@@ -39,7 +39,7 @@ _level = {
 }
 
 
-class rdps:
+class raqdps:
     def template(self):
         if self.product is None:
             self.product = "10km/grib2"
@@ -82,7 +82,7 @@ class rdps:
 
         PATH = f"{self.date:%H}/{self.fxx:03d}/{self.date:%Y%m%dT%HZ}_MSC_RAQDPS_{self.variable}_{self.level}_RLatLon0.09_PT{self.fxx:03d}H.grib2"
         self.SOURCES = {
-            "msc": f"https://dd.weather.gc.ca/{self.date:%Y%m%d}/WXO-DD/model_raqdps/10km/{PATH}"
+            "msc": f"https://dd.weather.gc.ca/{self.date:%Y%m%d}/WXO-DD/model_raqdps/{self.product}/{PATH}"
         }
 
         self.IDX_SUFFIX = [".grb2.idx", ".idx", ".grib.idx"]

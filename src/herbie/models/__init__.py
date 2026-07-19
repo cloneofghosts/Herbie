@@ -33,6 +33,8 @@ from .nam import *
 from .nbm import *
 from .nexrad import *
 from .rap import *
+from .raqdps import *
+from .rdaqa import *
 from .rdps import *
 from .reps import *
 from .rrfs import *

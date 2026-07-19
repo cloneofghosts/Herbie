@@ -9,7 +9,7 @@ The RDAQA is Canada's 10 km deterministic regional air quality analysis
 Description: https://eccc-msc.github.io/open-data/msc-data/nwp_rdaqa/readme_rdaqa-datamart_en/
 Data Source: https://dd.weather.gc.ca/today/model_rdaqa/
 
-- Regional domain: https://dd.weather.gc.ca/{YYYYMMDD}/WXO-DD/model_rdaqa/10km/grib2/{HH}/
+- Regional domain: https://dd.weather.gc.ca/{YYYYMMDD}/WXO-DD/model_rdaqa/10km/{HH}/
 
 where `HH` is the models initialization time.
 
@@ -34,7 +34,7 @@ _variable = {
 }
 
 
-class rdps:
+class rdaqa:
     def template(self):
         if self.product is None:
             self.product = "10km"
@@ -69,7 +69,7 @@ class rdps:
 
         PATH = f"{self.date:%H}/{self.date:%Y%m%dT%HZ}_MSC_RDAQA_{self.variable}_Sfc_RLatLon0.09_PT0H.grib2"
         self.SOURCES = {
-            "msc": f"https://dd.weather.gc.ca/{self.date:%Y%m%d}/WXO-DD/model_rdaqa/10km/{PATH}"
+            "msc": f"https://dd.weather.gc.ca/{self.date:%Y%m%d}/WXO-DD/model_rdaqa/{self.product}/{PATH}"
         }
 
         self.IDX_SUFFIX = [".grb2.idx", ".idx", ".grib.idx"]

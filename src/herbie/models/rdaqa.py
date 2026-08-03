@@ -67,7 +67,11 @@ class rdaqa:
         }
         self.AVAILABLE_VARIABLES = sorted(_variable)
 
-        PATH = f"{self.date:%H}/{self.date:%Y%m%dT%HZ}_MSC_RDAQA_{self.variable}_Sfc_RLatLon0.09_PT0H.grib2"
+        # Handle MSC filename formatting rule (RDAQA- for preliminary vs RDAQA_ for standard)
+        var_str = str(getattr(self, "variable", ""))
+        sep = "-" if var_str.startswith("Prelim_") else "_"
+
+        PATH = f"{self.date:%H}/{self.date:%Y%m%dT%HZ}_MSC_RDAQA{sep}{self.variable}_Sfc_RLatLon0.09_PT0H.grib2"
         self.SOURCES = {
             "msc": f"https://dd.weather.gc.ca/{self.date:%Y%m%d}/WXO-DD/model_rdaqa/{self.product}/{PATH}"
         }
